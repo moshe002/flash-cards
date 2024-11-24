@@ -1,0 +1,14 @@
+- folder
+ - properties:
+  (has relationship to card hasMany)
+  - title
+  - description
+  - date_created
+
+
+- card
+ (has relationship to folder belongsTo)
+ - question
+ - answer
+ - hint
+ - date_created
