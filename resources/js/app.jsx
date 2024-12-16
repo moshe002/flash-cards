@@ -1,5 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
+import { ToastContainer } from 'react-toastify';
 import '../css/app.css';
 
 createInertiaApp({

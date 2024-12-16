@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { router } from '@inertiajs/react';
+import { toast, Bounce } from 'react-toastify';
+import axios from 'axios';
 
 export default function Login() {
 
@@ -8,10 +10,17 @@ export default function Login() {
         email: '',
         password: '',
     });
-  
+
     const handleLogin = (event) => {
         event.preventDefault();
-        router.post('/login', loginValues);
+        try {
+            const response = router.post('/login', loginValues);
+            if (response) {
+                console.log('Successfully logged in.');
+            }
+        } catch (error) {
+            console.error('Error logging in, error: ', error);
+        }
     };
 
     const handleChange = (event) => {
@@ -25,25 +34,25 @@ export default function Login() {
     };
   
     return (
-        <div>
+        <div className='flex flex-col items-center justify-evenly h-screen p-5'>
             <h1>Login here</h1>
-            <form onSubmit={handleLogin}>
-                <div>
+            <form onSubmit={handleLogin} className='flex flex-col gap-5 p-5'>
+                <div className='flex justify-between gap-10'>
                     <label htmlFor='email'>Email:</label>
                     <input  
                         id='email' 
-                        className='border-2' 
+                        className='p-2 border-2' 
                         type='email'
                         value={loginValues.email} 
                         required
                         onChange={handleChange} 
                     />
                 </div>
-                <div>
+                <div className='flex justify-between gap-10'>
                     <label htmlFor='password'>Password:</label>
                     <input 
                         id='password' 
-                        className='border-2' 
+                        className='p-2 border-2' 
                         type='password' 
                         value={loginValues.password}
                         required
@@ -51,7 +60,7 @@ export default function Login() {
                     />
                 </div>
                 <button type='submit'>
-                    login
+                    ENTER
                 </button>
             </form>
         </div>
